@@ -1,4 +1,4 @@
-package com.example.nowandnext.model
+package com.example.nowandnext.model.networkModel
 
 import com.google.gson.annotations.Expose
 

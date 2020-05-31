@@ -1,4 +1,4 @@
-package com.example.nowandnext.ui
+package com.example.nowandnext.ui.fragment
 
 import android.content.Context
 import android.os.Bundle
@@ -13,7 +13,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
 import androidx.recyclerview.widget.RecyclerView
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout.OnRefreshListener
 import com.example.nowandnext.R
 import com.example.nowandnext.databinding.NowAndNextFragmentBinding
@@ -29,7 +28,8 @@ class NowAndNextFragment : Fragment() {
 
     companion object {
         var TAG: String = NowAndNextFragment::class.java.simpleName
-        fun newInstance() = NowAndNextFragment()
+        fun newInstance() =
+            NowAndNextFragment()
     }
 
     override fun onAttach(context: Context) {

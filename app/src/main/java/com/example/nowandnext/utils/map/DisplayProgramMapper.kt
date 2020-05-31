@@ -1,8 +1,7 @@
 package com.example.nowandnext.utils.map
 
-import com.example.nowandnext.model.Channel
-import com.example.nowandnext.model.ChannelProgramming
-import com.example.nowandnext.model.ChannelProgrammingResponse
+import com.example.nowandnext.model.networkModel.Channel
+import com.example.nowandnext.model.networkModel.ChannelProgrammingResponse
 import com.example.nowandnext.model.DisplayProgram
 
 object DisplayProgramMapper {

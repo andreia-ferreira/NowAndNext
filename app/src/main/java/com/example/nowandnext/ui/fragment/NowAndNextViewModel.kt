@@ -1,4 +1,4 @@
-package com.example.nowandnext.ui
+package com.example.nowandnext.ui.fragment
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel

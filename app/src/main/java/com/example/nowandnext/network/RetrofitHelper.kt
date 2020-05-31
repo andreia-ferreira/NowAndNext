@@ -2,9 +2,8 @@ package com.example.nowandnext.network
 
 import android.app.Application
 import com.example.nowandnext.BuildConfig
-import com.example.nowandnext.model.ChannelProgramming
-import com.example.nowandnext.model.ChannelProgrammingResponse
-import com.example.nowandnext.model.ChannelsResponse
+import com.example.nowandnext.model.networkModel.ChannelProgrammingResponse
+import com.example.nowandnext.model.networkModel.ChannelsResponse
 
 import java.util.concurrent.TimeUnit
 

@@ -1,5 +1,6 @@
-package com.example.nowandnext.model
+package com.example.nowandnext.model.networkModel
 
+import com.example.nowandnext.model.networkModel.ChannelProgramming
 import com.google.gson.annotations.Expose
 
 import com.google.gson.annotations.SerializedName

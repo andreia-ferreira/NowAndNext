@@ -6,8 +6,8 @@ import androidx.lifecycle.MutableLiveData
 import com.example.nowandnext.R
 import com.example.nowandnext.database.ProgramsDao
 import com.example.nowandnext.network.RetrofitHelper
-import com.example.nowandnext.model.Channel
-import com.example.nowandnext.model.ChannelsResponse
+import com.example.nowandnext.model.networkModel.Channel
+import com.example.nowandnext.model.networkModel.ChannelsResponse
 import com.example.nowandnext.model.DisplayProgram
 import com.example.nowandnext.utils.map.DisplayProgramMapper
 import retrofit2.Response

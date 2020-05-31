@@ -1,8 +1,7 @@
 package com.example.nowandnext.network
 
-import com.example.nowandnext.model.ChannelProgramming
-import com.example.nowandnext.model.ChannelProgrammingResponse
-import com.example.nowandnext.model.ChannelsResponse
+import com.example.nowandnext.model.networkModel.ChannelProgrammingResponse
+import com.example.nowandnext.model.networkModel.ChannelsResponse
 import retrofit2.Response
 
 import retrofit2.http.GET
