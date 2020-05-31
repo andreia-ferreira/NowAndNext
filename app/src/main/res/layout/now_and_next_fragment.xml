@@ -18,6 +18,10 @@
             type="androidx.recyclerview.widget.RecyclerView.OnScrollListener" />
 
         <variable
+            name="swipeRefreshListener"
+            type="androidx.swiperefreshlayout.widget.SwipeRefreshLayout.OnRefreshListener" />
+
+        <variable
             name="isLoading"
             type="androidx.lifecycle.MutableLiveData&lt;Boolean&gt;" />
     </data>
@@ -26,23 +30,24 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        scrollListener="@{scrollListener}"
-        layoutManager="@{layoutManager}"
-        adapter="@{adapter}"/>
-
-        <ProgressBar
-            android:id="@+id/progressBar"
-            style="?android:attr/progressBarStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            isRefreshing="@{isLoading}"
+            swipeListener="@{swipeRefreshListener}"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:visibility="@{isLoading == true ? View.VISIBLE : View.GONE}"/>
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.recyclerview.widget.RecyclerView
+                adapter="@{adapter}"
+                layoutManager="@{layoutManager}"
+                scrollListener="@{scrollListener}"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

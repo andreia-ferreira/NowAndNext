@@ -13,6 +13,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout.OnRefreshListener
 import com.example.nowandnext.R
 import com.example.nowandnext.databinding.NowAndNextFragmentBinding
 import com.example.nowandnext.model.DisplayProgram
@@ -57,20 +59,19 @@ class NowAndNextFragment : Fragment() {
     }
 
     private fun initListeners() {
-        val scrollListener = object : RecyclerView.OnScrollListener() {
+        binding.scrollListener = object : RecyclerView.OnScrollListener() {
             override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                 super.onScrollStateChanged(recyclerView, newState)
-                if (!recyclerView.canScrollVertically(1)) {
+                if (!recyclerView.canScrollVertically(1) && channelList.isNotEmpty()) {
                     viewModel.showLoading()
                     viewModel.refreshChannels(false)
                 }
-                if (!recyclerView.canScrollVertically(-1) && newState==RecyclerView.SCROLL_STATE_IDLE) {
-                    viewModel.showLoading()
-                    viewModel.refreshChannels(true)
-                }
             }
         }
-        binding.scrollListener = scrollListener
+
+        binding.swipeRefreshListener = OnRefreshListener {
+            viewModel.refreshChannels(true)
+        }
     }
 
     private fun initObservers() {

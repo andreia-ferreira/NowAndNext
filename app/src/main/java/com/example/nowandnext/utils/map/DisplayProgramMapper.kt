@@ -4,7 +4,6 @@ import com.example.nowandnext.model.Channel
 import com.example.nowandnext.model.ChannelProgramming
 import com.example.nowandnext.model.ChannelProgrammingResponse
 import com.example.nowandnext.model.DisplayProgram
-import com.penguin.thebooklore.utils.mapper.INullableInputListMapperImpl
 
 object DisplayProgramMapper {
 
