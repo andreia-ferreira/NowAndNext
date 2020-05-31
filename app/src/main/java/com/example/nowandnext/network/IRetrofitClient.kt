@@ -7,6 +7,7 @@ import retrofit2.Response
 
 import retrofit2.http.GET
 import retrofit2.http.Query
+import retrofit2.http.Url
 
 interface IRetrofitClient {
 
@@ -14,8 +15,11 @@ interface IRetrofitClient {
     suspend fun getChannels(@Query("UserAgent") agent: String,
                             @Query("\$filter", encoded = true) filter: String,
                             @Query("\$orderby", encoded = true) orderBy: String,
-                            @Query("\$inlinecount", encoded = true) inlineCount: String,
-                            @Query("\$skip", encoded = true) nextItems: Int)
+                            @Query("\$inlinecount", encoded = true) inlineCount: String)
+            : Response<ChannelsResponse?>
+
+    @GET
+    suspend fun getMoreChannels(@Url nextUrl: String)
             : Response<ChannelsResponse?>
 
     @GET("/Program/v7/Programs/NowAndNextLiveChannelPrograms")

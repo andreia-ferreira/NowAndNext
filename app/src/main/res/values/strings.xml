@@ -4,4 +4,5 @@
         Please try again later.</string>
     <string name="error_empty_search_channel">No channels were found.</string>
     <string name="error_empty_search_program">No channel programming was found.</string>
+    <string name="message_program_image">program image</string>
 </resources>

@@ -13,8 +13,8 @@ interface ProgramsDao {
     suspend fun getDisplayPrograms(): List<DisplayProgram>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertDisplayPrograms(listArtwork : List<DisplayProgram>)
+    suspend fun insertDisplayPrograms(list : List<DisplayProgram>)
 
     @Query("DELETE FROM program_table")
-    fun deleteAllPrograms()
+    suspend fun deleteAllPrograms()
 }
