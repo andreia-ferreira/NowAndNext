@@ -51,7 +51,7 @@ class NowAndNextFragment : Fragment() {
         viewModel.showLoading()
         initListeners()
         initObservers()
-        viewModel.refreshCollection()
+        viewModel.refreshChannels(true)
 
         return binding.root
     }
@@ -62,8 +62,11 @@ class NowAndNextFragment : Fragment() {
                 super.onScrollStateChanged(recyclerView, newState)
                 if (!recyclerView.canScrollVertically(1)) {
                     viewModel.showLoading()
-                    viewModel.nextItems += 10
-                    viewModel.refreshCollection()
+                    viewModel.refreshChannels(false)
+                }
+                if (!recyclerView.canScrollVertically(-1) && newState==RecyclerView.SCROLL_STATE_IDLE) {
+                    viewModel.showLoading()
+                    viewModel.refreshChannels(true)
                 }
             }
         }
@@ -72,7 +75,7 @@ class NowAndNextFragment : Fragment() {
 
     private fun initObservers() {
         viewModel.listDisplayProgram.observe(viewLifecycleOwner, Observer { list ->
-            if (list != null) {
+            if (list != null && list.isNotEmpty()) {
                 channelList.clear()
                 channelList.addAll(list)
                 binding.adapter?.notifyDataSetChanged()

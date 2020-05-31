@@ -16,8 +16,12 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class RetrofitHelper(val mApplication: Application) {
 
-    suspend fun getChannels(nextItems: Int): Response<ChannelsResponse?> {
-        return getClient(BuildConfig.BASE_URL).getChannels(AGENT, FILTER, ORDER_BY_CHANNEL, INLINE_COUNT, nextItems)
+    suspend fun getChannels(): Response<ChannelsResponse?> {
+        return getClient(BuildConfig.BASE_URL).getChannels(AGENT, FILTER, ORDER_BY_CHANNEL, INLINE_COUNT)
+    }
+
+    suspend fun getMoreChannels(nextUrl: String): Response<ChannelsResponse?> {
+        return getClient(BuildConfig.BASE_URL).getMoreChannels(nextUrl)
     }
 
     suspend fun getChannelProgramming(callLetter: String): Response<ChannelProgrammingResponse?> {

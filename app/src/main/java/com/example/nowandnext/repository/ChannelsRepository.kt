@@ -7,8 +7,10 @@ import com.example.nowandnext.R
 import com.example.nowandnext.database.ProgramsDao
 import com.example.nowandnext.network.RetrofitHelper
 import com.example.nowandnext.model.Channel
+import com.example.nowandnext.model.ChannelsResponse
 import com.example.nowandnext.model.DisplayProgram
 import com.example.nowandnext.utils.map.DisplayProgramMapper
+import retrofit2.Response
 import java.net.UnknownHostException
 
 class ChannelsRepository(
@@ -19,14 +21,21 @@ class ChannelsRepository(
     val reposErrors = MutableLiveData<String>()
     val listToDisplay = MutableLiveData<List<DisplayProgram>>()
     private val networkList = mutableListOf<DisplayProgram>()
+    private var nextUrl = MutableLiveData<String?>()
 
-    suspend fun refreshChannels(nextItems: Int): Boolean {
+    suspend fun refreshChannels(reset: Boolean): Boolean {
 
         try {
-            val response = retrofitHelper.getChannels(nextItems)
+            val response = if (reset) {
+                loadInitialChannels()
+            } else {
+                loadMoreChannels()
+            }
 
             if (response.isSuccessful) {
                 val listChannels = response.body()?.value ?: emptyList()
+                nextUrl.value = response.body()?.odataNextLink
+
                 if (listChannels.isNotEmpty()) {
                     Log.d(TAG, "Found ${listChannels.size} results")
 
@@ -49,6 +58,21 @@ class ChannelsRepository(
         } finally {
             return true
         }
+    }
+
+    private suspend fun loadInitialChannels(): Response<ChannelsResponse?> {
+        val response = retrofitHelper.getChannels()
+
+        if (response.isSuccessful) {
+            clearCache()
+        }
+
+        return response
+    }
+
+    private suspend fun loadMoreChannels(): Response<ChannelsResponse?> {
+        if (nextUrl.value == null) throw Exception("End")
+        return retrofitHelper.getMoreChannels(nextUrl.value!!)
     }
 
     private suspend fun getChannelProgramming(channel: Channel) {
@@ -85,6 +109,13 @@ class ChannelsRepository(
         } catch (e: Exception) {
             Log.e(TAG, e.message.toString())
         }
+    }
+
+    private suspend fun clearCache() {
+        dao.deleteAllPrograms()
+        listToDisplay.value = emptyList()
+        networkList.clear()
+        nextUrl.value = null
     }
 
     companion object {

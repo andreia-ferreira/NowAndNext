@@ -8,11 +8,11 @@ import com.example.nowandnext.model.DisplayProgram
 
 
 @Database(entities = [DisplayProgram::class],
-    version = 2,
+    version = 1,
     exportSchema = false)
 abstract class ProgramsDatabase : RoomDatabase() {
 
-    abstract fun museumDao(): ProgramsDao
+    abstract fun programsDao(): ProgramsDao
 
     companion object {
         @Volatile
@@ -23,7 +23,7 @@ abstract class ProgramsDatabase : RoomDatabase() {
                 return INSTANCE ?: Room.databaseBuilder(
                     context.applicationContext,
                     ProgramsDatabase::class.java,
-                    "museumDatabase"
+                    "nowAndNextDatabase"
                 ).build()
             }
         }
