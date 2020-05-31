@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">NowAndNext</string>
+    <string name="error_service_call">There was an error while fetching the results.
+        Please try again later.</string>
+    <string name="error_empty_search_channel">No channels were found.</string>
+    <string name="error_empty_search_program">No channel programming was found.</string>
+</resources>
