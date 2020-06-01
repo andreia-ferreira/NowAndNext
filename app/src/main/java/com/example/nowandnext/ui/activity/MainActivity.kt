@@ -16,11 +16,7 @@ class MainActivity : AppCompatActivity() {
 
         val manager: FragmentManager = this.supportFragmentManager
         val transaction: FragmentTransaction = manager.beginTransaction()
-        transaction.add(R.id.frameLayout,
-            NowAndNextFragment.newInstance(),
-            NowAndNextFragment.TAG
-        )
-        transaction.addToBackStack(null)
+        transaction.add(R.id.frameLayout, NowAndNextFragment.newInstance(), NowAndNextFragment.TAG)
         transaction.commit()
     }
 
